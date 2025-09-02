@@ -2,9 +2,11 @@ name: Deploy DAB
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+    inputs:
+      environment:
+        description: "Target environment (dev/test/prod)"
+        required: true
+        default: "dev"
 
 jobs:
   deploy:
@@ -14,12 +16,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Databricks CLI
-        uses: databricks/setup-cli@v1
+        uses: databricks/setup-cli@main
 
       - name: Deploy bundle
         run: |
-          databricks bundle validate --target dev
-          databricks bundle deploy --target dev
+          databricks bundle validate --target ${{ github.event.inputs.environment }}
+          databricks bundle deploy --target ${{ github.event.inputs.environment }}
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
