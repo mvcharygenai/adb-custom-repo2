@@ -4,7 +4,7 @@ bundle:
 artifacts:
   notebooks:
     type: notebook
-    path: "Azure Databricks/SOURCE_CODE"
+    path: "Databricks/Src"
     files:
       - "**/*.py"
       - "**/*.ipynb"
@@ -12,8 +12,8 @@ artifacts:
 
 resources:
   jobs:
-    $include: "Azure Databricks/JOBS/etl_job.yml"
-    $include: "Azure Databricks/JOBS/adhoc_job.yml"
+    $include: "Databricks/Jobs/MyJob_One.yml"
+    $include: "Databricks/Jobs/MySecondJob.yml"
 
 targets:
   dev:

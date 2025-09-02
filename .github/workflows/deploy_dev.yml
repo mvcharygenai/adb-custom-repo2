@@ -20,6 +20,7 @@ jobs:
 
       - name: Validate bundle
         run: |
+          cd "Databricks/Config"
           databricks bundle validate --target ${{ github.event.inputs.environment }}
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
