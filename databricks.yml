@@ -4,13 +4,24 @@ bundle:
 artifacts:
   notebooks:
     type: notebook
-    path: "Databricks/Src"
-    include:
+    path: "Azure Databricks/SOURCE_CODE"
+    files:
       - "**/*.py"
       - "**/*.ipynb"
       - "**/*.dbc"
 
 resources:
   jobs:
-    - $include: "Databricks/Jobs/MyJob_One.yml"
-    - $include: "Databricks/Jobs/MySecondJob.yml"
+    $include: "Azure Databricks/JOBS/etl_job.yml"
+    $include: "Azure Databricks/JOBS/adhoc_job.yml"
+
+targets:
+  dev:
+    default: true
+    workspace:
+      root_path: "/Shared/bundles/${bundle.name}/${bundle.target}"
+    variables:
+      cluster:
+        spark_version: "14.3.x-scala2.12"
+        node_type_id: "Standard_DS3_v2"
+        num_workers: 1
