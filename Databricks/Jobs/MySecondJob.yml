@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    MySecondJob:
+      name: MySecondJob
+      trigger:
+        pause_status: UNPAUSED
+        periodic:
+          interval: 2
+          unit: DAYS
+      tasks:
+        - task_key: SecondTask
+          notebook_task:
+            notebook_path: /Workspace/SOURCE_CODE/SecondNotebook
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: STANDARD

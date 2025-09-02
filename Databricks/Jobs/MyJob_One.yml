@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    MyJob_One:
+      name: MyJob_One
+      trigger:
+        pause_status: UNPAUSED
+        periodic:
+          interval: 1
+          unit: DAYS
+      tasks:
+        - task_key: FirstTask
+          notebook_task:
+            notebook_path: /Workspace/SOURCE_CODE/FirstNotebook
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: STANDARD

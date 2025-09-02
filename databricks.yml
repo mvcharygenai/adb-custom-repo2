@@ -1,0 +1,16 @@
+bundle:
+  name: adb-repo
+
+artifacts:
+  notebooks:
+    type: notebook
+    path: "Databricks/Src"
+    include:
+      - "**/*.py"
+      - "**/*.ipynb"
+      - "**/*.dbc"
+
+resources:
+  jobs:
+    - $include: "Databricks/Jobs/MyJob_One.yml"
+    - $include: "Databricks/Jobs/MySecondJob.yml"
