@@ -1,7 +1,6 @@
-bundle:
-  target: dev
-  parameters:
-    cluster:
-      spark_version: "13.3.x-scala2.12"
-      node_type_id: "Standard_DS3_v2"
-      num_workers: 1
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-3d597f5a-4384.cloud.databricks.com

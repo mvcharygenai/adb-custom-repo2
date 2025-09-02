@@ -16,12 +16,4 @@ resources:
     $include: "Databricks/Jobs/MySecondJob.yml"
 
 targets:
-  dev:
-    default: true
-    workspace:
-      root_path: "/Shared/bundles/${bundle.name}/${bundle.target}"
-    variables:
-      cluster:
-        spark_version: "14.3.x-scala2.12"
-        node_type_id: "Standard_DS3_v2"
-        num_workers: 1
+  $include: "Databricks/Environments/dev.yml"
