@@ -18,9 +18,15 @@ jobs:
       - name: Set up Databricks CLI
         uses: databricks/setup-cli@main
 
-      - name: Deploy bundle
+      - name: Validate bundle
         run: |
           databricks bundle validate --target ${{ github.event.inputs.environment }}
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+      - name: Deploy bundle
+        run: |
           databricks bundle deploy --target ${{ github.event.inputs.environment }}
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
